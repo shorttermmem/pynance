@@ -10,6 +10,11 @@ OpenGL Graphics Engine in Python ( Pygame, ModernGL )
 sudo apt install libgl1-mesa-dev libglu1-mesa-dev libglew-dev
 ```
 
+#### Setup
+```shell
+python -m pip install -e .
+```
+
 #### Appmap code visualization
 ```shell
 pip install --require-virtualenv appmap 
