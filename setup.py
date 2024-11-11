@@ -14,6 +14,7 @@ setup(
         "pygame",
         "PyGLM",
         "pywavefront",
+        "memory_profiler"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

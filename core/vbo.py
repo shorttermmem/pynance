@@ -10,7 +10,6 @@ class VBO:
         self.vbos['cat'] = CatVBO(ctx)
         self.vbos['skybox'] = SkyBoxVBO(ctx)
         self.vbos['advanced_skybox'] = AdvancedSkyBoxVBO(ctx)
-        self.vbos['font'] = FontVBO(ctx)
 
     def destroy(self):
         """release VBO object"""
