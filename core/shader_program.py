@@ -1,6 +1,7 @@
 
 
 class ShaderProgram:
+    """Compile frag vert shaders per rendering object"""
     def __init__(self, ctx):
         self.ctx = ctx
         self.programs = {}
@@ -10,6 +11,7 @@ class ShaderProgram:
         self.programs['shadow_map'] = self.get_program('shadow_map')
 
     def get_program(self, shader_program_name):
+        """load and compile shaders"""
         with open(f'shaders/{shader_program_name}.vert') as file:
             vertex_shader = file.read()
 
@@ -20,4 +22,5 @@ class ShaderProgram:
         return program
 
     def destroy(self):
+        """release compiled shaders"""
         [program.release() for program in self.programs.values()]

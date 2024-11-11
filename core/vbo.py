@@ -1,21 +1,37 @@
 import numpy as np
-import moderngl as mgl
 import pywavefront
 
-
 class VBO:
+    """Vertex Buffer Object is a buffer that stores vertex data, 
+       such as positions, colors, normals, and texture coordinates."""
     def __init__(self, ctx):
         self.vbos = {}
         self.vbos['cube'] = CubeVBO(ctx)
         self.vbos['cat'] = CatVBO(ctx)
         self.vbos['skybox'] = SkyBoxVBO(ctx)
         self.vbos['advanced_skybox'] = AdvancedSkyBoxVBO(ctx)
+        self.vbos['font'] = FontVBO(ctx)
 
     def destroy(self):
+        """release VBO object"""
         [vbo.destroy() for vbo in self.vbos.values()]
 
 
 class BaseVBO:
+    """
+    BaseVBO is a base class for creating Vertex Buffer Objects (VBOs) in the rendering context.
+    
+    It provides functionality to manage the creation and destruction of VBOs, which are 
+    essential for rendering vertex data in graphics applications. A VBO is created using the 
+    current rendering context (ctx), and the class manages the vertex buffer and attributes 
+    format required by shaders.
+
+    Attributes:
+        ctx: The graphics rendering context.
+        vbo: The vertex buffer object created from vertex data.
+        format (str): The format of the vertex data attributes.
+        attribs (list): The list of attribute names to be used in the shaders.
+    """
     def __init__(self, ctx):
         self.ctx = ctx
         self.vbo = self.get_vbo()
@@ -23,13 +39,15 @@ class BaseVBO:
         self.attribs: list = None
 
     def get_vertex_data(self): ...
-
+        
     def get_vbo(self):
+        """Create and return a vertex buffer object from the vertex data."""
         vertex_data = self.get_vertex_data()
         vbo = self.ctx.buffer(vertex_data)
         return vbo
 
     def destroy(self):
+        """release vbo object"""
         self.vbo.release()
 
 
@@ -130,10 +148,6 @@ class AdvancedSkyBoxVBO(BaseVBO):
         vertices = [(-1, -1, z), (3, -1, z), (-1, 3, z)]
         vertex_data = np.array(vertices, dtype='f4')
         return vertex_data
-
-
-
-
 
 
 

@@ -1,7 +1,4 @@
-import moderngl as mgl
-import numpy as np
 import glm
-
 
 class BaseModel:
     def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
@@ -136,9 +133,6 @@ class AdvancedSkyBox(BaseModel):
         self.texture = self.app.mesh.texture.textures[self.tex_id]
         self.program['u_texture_skybox'] = 0
         self.texture.use(location=0)
-
-
-
 
 
 

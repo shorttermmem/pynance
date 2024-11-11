@@ -1,8 +1,7 @@
 from .model import *
-import glm
-
 
 class Scene:
+    """a 3D scene composite of objects"""
     def __init__(self, app):
         self.app = app
         self.objects = []
