@@ -1,4 +1,4 @@
-
+import moderngl as mgl
 
 class SceneRenderer:
     def __init__(self, app):
@@ -23,6 +23,8 @@ class SceneRenderer:
         self.scene.skybox.render()
 
     def render(self):
+        # self.ctx.front_face = 'cw'
+        self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
         self.scene.update()
         # pass 1
         self.render_shadow()

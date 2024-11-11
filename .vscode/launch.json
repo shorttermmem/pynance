@@ -12,22 +12,20 @@
             "console": "integratedTerminal",
             "args": [
                 //"${command:pickArgs}"
-            ]
+            ],
+            "justMyCode": false
         },
-        //{
-        //    "name": "Appmap",
-        //    "type": "debugpy",
-        //    "request": "launch",
-        //    "program": "appmap-python",
-        //    "console": "integratedTerminal",
-        //    "args": [
-        //        "--record",
-        //        "process",
-        //        "python",
-        //        "-m",
-        //        "main.py"
-        //        //"${command:pickArgs}"
-        //    ]
-        //}
+        {
+            "name": "Profile Game",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-m",
+                "memory_profiler"
+            ],
+            "justMyCode": false
+        },
     ]
 }
