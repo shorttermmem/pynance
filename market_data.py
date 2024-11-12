@@ -2,11 +2,12 @@ import yfinance as yf
 import pandas as pd
 from plotly import graph_objects as go
 from datetime import date
+from sql import FinancialDatabase
 
 class MarketData:
     def __init__(self):
-        pass
-    
+        self.fd = FinancialDatabase()
+            
     def get_stock(self):
         # Parameters for retrieving the stock data
         start_date = "2015-01-01"
@@ -82,6 +83,8 @@ class MarketData:
             'Income Statement': ticker.income_stmt,
             'Cash Flow': ticker.cash_flow
         }
+        
+        self.fd.update_financial_data(ticker_symbol, financials)
         
         return financials
 
