@@ -1,15 +1,9 @@
-
-
-class ShaderProgram:
+class BaseShaderProgram:
     """Compile frag vert shaders per rendering object"""
     def __init__(self, ctx):
         self.ctx = ctx
         self.programs = {}
-        self.programs['default'] = self.get_program('default')
-        self.programs['skybox'] = self.get_program('skybox')
-        self.programs['advanced_skybox'] = self.get_program('advanced_skybox')
-        self.programs['shadow_map'] = self.get_program('shadow_map')
-
+        
     def get_program(self, shader_program_name):
         """load and compile shaders"""
         with open(f'shaders/{shader_program_name}.vert') as file:
@@ -24,3 +18,19 @@ class ShaderProgram:
     def destroy(self):
         """release compiled shaders"""
         [program.release() for program in self.programs.values()]
+        
+class ShaderProgram(BaseShaderProgram):
+    """3D shader programs"""
+    def __init__(self, ctx):
+        super().__init__(ctx)
+        self.programs['default'] = self.get_program('default')
+        self.programs['skybox'] = self.get_program('skybox')
+        self.programs['advanced_skybox'] = self.get_program('advanced_skybox')
+        self.programs['shadow_map'] = self.get_program('shadow_map')
+
+class HUDShaderProgram(BaseShaderProgram):
+    """3D shader programs"""
+    def __init__(self, ctx):
+        super().__init__(ctx)
+        self.programs['hud'] = self.get_program('hud')
+

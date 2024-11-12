@@ -30,19 +30,19 @@ class GraphicsEngine:
         self.camera = Camera(self, position=(0, 6, 4))
         # mesh
         self.mesh = Mesh(self)
-        # HUD
-        self.hud = HUD(self)
         # scene
         self.scene = Scene(self)
         # renderer
         self.scene_renderer = SceneRenderer(self)
-
+        # HUD
+        self.hud_renderer = HUDRenderer(self)
+        
     def check_events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 self.mesh.destroy()
                 self.scene_renderer.destroy()
-                self.hud.destroy()
+                self.hud_renderer.destroy()
                 pg.quit()
                 sys.exit()
 
@@ -53,7 +53,7 @@ class GraphicsEngine:
         self.scene_renderer.render()
         # render hud
         fps = self.clock.get_fps()
-        self.hud.render(f"FPS: {fps:.2f}")
+        self.hud_renderer.render(f"FPS: {fps:.2f}")
         # swap buffers
         pg.display.flip()
 

@@ -4,4 +4,4 @@ from .light import Light
 from .mesh import Mesh
 from .scene import Scene
 from .scene_renderer import SceneRenderer
-from .hud import *
+from .hud_renderer import *
