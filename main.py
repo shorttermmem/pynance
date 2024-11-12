@@ -1,7 +1,8 @@
+import sys
 import pygame as pg
 import moderngl as mgl
-import sys
 from core import *
+import market_data as md
 
 class GraphicsEngine:
     def __init__(self, win_size=(1600, 900)):
@@ -16,7 +17,7 @@ class GraphicsEngine:
         # create opengl context
         self.screen = pg.display.set_mode(self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
         # mouse settings
-        pg.event.set_grab(True)
+        #pg.event.set_grab(True)
         pg.mouse.set_visible(False)
         # detect and use existing opengl context
         self.ctx = mgl.create_context()
@@ -24,6 +25,10 @@ class GraphicsEngine:
         self.clock = pg.time.Clock()
         self.time = 0
         self.delta_time = 0
+        # yfinance
+        self.md = md.MarketData()
+        data = self.md.get_detailed_financials('AAPL')
+        print(data)
         # light
         self.light = Light()
         # camera
