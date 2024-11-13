@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 from plotly import graph_objects as go
 from datetime import date
-from sql import FinancialDatabase
+from market.sql import FinancialDatabase
 
 
 class MarketData:

@@ -2,7 +2,7 @@ import sys
 import pygame as pg
 import moderngl as mgl
 from core import *
-import market_data as md
+import market.data as md
 
 
 class GraphicsEngine:
@@ -20,8 +20,8 @@ class GraphicsEngine:
         self.screen = pg.display.set_mode(
             self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
         # mouse settings
-        pg.event.set_grab(True)
-        pg.mouse.set_visible(False)
+        #pg.event.set_grab(True)
+        pg.mouse.set_visible(True)
         # detect and use existing opengl context
         self.ctx = mgl.create_context()
         # create an object to help track time
@@ -30,7 +30,7 @@ class GraphicsEngine:
         self.delta_time = 0
         # yfinance
         self.md = md.MarketData()
-        data = self.md.get_detailed_financials('AAPL')
+        data = self.md.get_basic_fundamentals('AAPL')
         print(data)
         # light
         self.light = Light()
