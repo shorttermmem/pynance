@@ -4,6 +4,7 @@ import moderngl as mgl
 from core import *
 import market_data as md
 
+
 class GraphicsEngine:
     def __init__(self, win_size=(1600, 900)):
         # init pygame modules
@@ -13,11 +14,13 @@ class GraphicsEngine:
         # set opengl attr
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
-        pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
+        pg.display.gl_set_attribute(
+            pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
         # create opengl context
-        self.screen = pg.display.set_mode(self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
+        self.screen = pg.display.set_mode(
+            self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
         # mouse settings
-        #pg.event.set_grab(True)
+        pg.event.set_grab(True)
         pg.mouse.set_visible(False)
         # detect and use existing opengl context
         self.ctx = mgl.create_context()
@@ -41,7 +44,7 @@ class GraphicsEngine:
         self.scene_renderer = SceneRenderer(self)
         # HUD
         self.hud_renderer = HUDRenderer(self)
-        
+
     def check_events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
@@ -77,33 +80,3 @@ class GraphicsEngine:
 if __name__ == '__main__':
     app = GraphicsEngine()
     app.run()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
